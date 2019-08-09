@@ -12,12 +12,22 @@ export class ProductRepositoryService {
   private ventor: string[] = [];
 
   constructor(private dataSourceService: ProductDatasourceService) {
-    dataSourceService.getProducts().subscribe((response) => {
-      this.products = response['products'];
-      this.categories = response['products'].map(p => p.productLine).filter((c, index, array) => array.indexOf(c) === index).sort();
-      this.scale = response['products'].map(p => p.productScale).filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
-      this.ventor = response['products'].map(p => p.productVendor).filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
+    this.Inicail();
+  }
 
+  Inicail() {
+    return new Promise ((resolve, reject)=>{
+      try{
+        this.dataSourceService.getProducts().subscribe((response) => {
+          this.products = response['products'];
+          this.categories = response['products'].map(p => p.productLine).filter((c, index, array) => array.indexOf(c) === index).sort();
+          this.scale = response['products'].map(p => p.productScale).filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
+          this.ventor = response['products'].map(p => p.productVendor).filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
+          resolve(true);
+        })
+      }catch (e) {
+       reject(false)
+      }
     });
   }
 
