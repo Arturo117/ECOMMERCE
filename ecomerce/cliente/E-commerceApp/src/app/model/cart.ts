@@ -10,7 +10,7 @@ export class Cart {
   deleteLine(product: Product) {
     const line = this.lines.findIndex(line => line.product.productCode === product.productCode);
     if (line === undefined) {
-      console.log('Que elimino Bro')
+      console.log('¿Qué necesita eliminar?')
     } else {
       this.lines.splice(line,1);
     }
@@ -28,7 +28,7 @@ export class Cart {
   ModificarQuatity(product: Product, quatity: number) {
     const line = this.lines.find(line => line.product.productCode === product.productCode);
     if (line === undefined) {
-     console.log('No existe este producto')
+     console.log('Este producto no existe')
     } else {
       line.quantity = quatity;
     }

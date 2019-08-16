@@ -29,12 +29,12 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productReposService.Inicail().then(p=>{
-      this.route.params.subscribe((params: Params)=>{
+    this.productReposService.Inicail().then(p => {
+      this.route.params.subscribe((params: Params) => {
         this.idP = params['id'];
       });
       this.Cargar();
-    }).catch(e=>console.log(e));
+    }).catch(e => console.log(e));
 
   }
 }
